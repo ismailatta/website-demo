@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow - Pomodoro Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/pomodoro.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Navigation Sidebar -->
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>FocusFlow</h1>
+            </div>
+            <a href="../pages/home.html"><button class="nav-button" data-page="home">
+                <i class="fas fa-home nav-icon"></i>
+                <span class="nav-label">Home</span>
+            </button></a>
+            
+            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
+                <i class="fas fa-lightbulb nav-icon"></i>
+                <span class="nav-label">Idea</span>
+            </button></a>
+            
+            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
+                <i class="fas fa-bullseye nav-icon"></i>
+                <span class="nav-label">Goal</span>
+            </button></a>
+            
+            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
+                <i class="fas fa-project-diagram nav-icon"></i>
+                <span class="nav-label">Planner</span>
+            </button></a>
+            
+            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
+                <i class="fas fa-calendar nav-icon"></i>
+                <span class="nav-label">Calendar</span>
+            </button></a>
+            
+            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
+                <i class="fas fa-clock nav-icon"></i>
+                <span class="nav-label">Pomodoro</span>
+            </button></a>
+            
+            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
+                <i class="fas fa-sticky-note nav-icon"></i>
+                <span class="nav-label">Notes</span>
+            </button></a>
+        </nav>
+
+        <div class="app-container">
+            <header class="header">
+                <h1>Focus Flow</h1>
+                <p>Boost your productivity with smart time management</p>
+            </header>
+
+            <div class="settings-panel">
+                <div class="time-setting">
+                    <h3>Work Duration</h3>
+                    <div class="time-input-group">
+                        <input type="number" id="work-hours" min="0" max="23" value="0">
+                        <span>h</span>
+                        <input type="number" id="work-minutes" min="0" max="59" value="25">
+                        <span>m</span>
+                        <input type="number" id="work-seconds" min="0" max="59" value="0">
+                        <span>s</span>
+                    </div>
+                </div>
+
+                <div class="time-setting">
+                    <h3>Break Duration</h3>
+                    <div class="time-input-group">
+                        <input type="number" id="break-hours" min="0" max="23" value="0">
+                        <span>h</span>
+                        <input type="number" id="break-minutes" min="0" max="59" value="5">
+                        <span>m</span>
+                        <input type="number" id="break-seconds" min="0" max="59" value="0">
+                        <span>s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <div class="progress-container">
+                    <svg class="progress-ring" width="300" height="300">
+                        <circle class="progress-ring__background" cx="150" cy="150" r="120"></circle>
+                        <circle class="progress-ring__progress" cx="150" cy="150" r="120"></circle>
+                    </svg>
+                    <div class="time-display" id="timeDisplay">
+                        <span class="time-part" id="hours">00</span>:
+                        <span class="time-part" id="minutes">00</span>:
+                        <span class="time-part" id="seconds">00</span>
+                    </div>
+                    <div class="mode-indicator" id="modeIndicator">Ready</div>
+                </div>
+
+                <div class="brain-container">
+                    <div class="brain" id="brainVisualization">
+                        <div class="brain-lobe left"></div>
+                        <div class="brain-lobe right"></div>
+                        <div class="brain-stem"></div>
+                    </div>
+                    <div class="brain-status" id="brainStatus">Relaxed</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" id="startStopBtn">Start Focus</button>
+                <button class="control-btn secondary" id="resetBtn">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/pomodoro.js"></script>
+</body>
+</html>

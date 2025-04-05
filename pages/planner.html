@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visionary Planner | Ultimate Productivity System</title>
+    <link rel="stylesheet" href="../css/planner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Navigation Sidebar -->
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>FocusFlow</h1>
+            </div>
+            <a href="../pages/home.html"><button class="nav-button" data-page="home">
+                <i class="fas fa-home nav-icon"></i>
+                <span class="nav-label">Home</span>
+            </button></a>
+            
+            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
+                <i class="fas fa-lightbulb nav-icon"></i>
+                <span class="nav-label">Idea</span>
+            </button></a>
+            
+            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
+                <i class="fas fa-bullseye nav-icon"></i>
+                <span class="nav-label">Goal</span>
+            </button></a>
+            
+            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
+                <i class="fas fa-project-diagram nav-icon"></i>
+                <span class="nav-label">Planner</span>
+            </button></a>
+            
+            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
+                <i class="fas fa-calendar nav-icon"></i>
+                <span class="nav-label">Calendar</span>
+            </button></a>
+            
+            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
+                <i class="fas fa-clock nav-icon"></i>
+                <span class="nav-label">Pomodoro</span>
+            </button></a>
+            
+            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
+                <i class="fas fa-sticky-note nav-icon"></i>
+                <span class="nav-label">Notes</span>
+            </button></a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="app-container">
+            <header class="main-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tasks, contacts...">
+                </div>
+                <div class="header-actions">
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="user-profile">
+                        <div class="profile-image">
+                            <img src="assets/images/user.jpg" alt="User" id="profileImage">
+                            <input type="file" id="profileImageUpload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboard">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <div class="section-actions">
+                        <button class="btn-refresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <!-- Focus Card -->
+                    <div class="card focus-card">
+                        <div class="card-header">
+                            <h3>Daily Focus</h3>
+                            <div class="card-actions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="card-body" id="focusItemsContainer">
+                            <div class="focus-item">
+                                <div class="focus-checkbox">
+                                    <input type="checkbox" id="focus1">
+                                    <label for="focus1"></label>
+                                </div>
+                                <div class="focus-content">
+                                    <h4 contenteditable="true">Plan your day</h4>
+                                    <p contenteditable="true">High Priority | Morning</p>
+                                </div>
+                                <button class="btn-delete-focus">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="focus-item">
+                                <div class="focus-checkbox">
+                                    <input type="checkbox" id="focus2">
+                                    <label for="focus2"></label>
+                                </div>
+                                <div class="focus-content">
+                                    <h4 contenteditable="true">Review investments</h4>
+                                    <p contenteditable="true">Medium Priority | Afternoon</p>
+                                </div>
+                                <button class="btn-delete-focus">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-quick-add" id="addFocusItem">
+                                <i class="fas fa-plus"></i> Add Focus Item
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card time-card">
+                        <div class="card-header">
+                            <h3>Time Allocation</h3>
+                            <div class="card-actions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="time-chart">
+                                <canvas id="timeChart"></canvas>
+                            </div>
+                            <div class="time-legend" id="timeLegend">
+                                <!-- Legend will show all user calendars -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wealth Tracker -->
+                    <div class="card wealth-card">
+                        <div class="card-header">
+                            <h3>Wealth Tracker</h3>
+                            <div class="card-actions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="wealth-metric">
+                                <div class="metric-value" id="wealthValue">$0</div>
+                                <div class="metric-label">Net Worth</div>
+                            </div>
+                            <div class="wealth-change" id="wealthChangeContainer" style="display: none;">
+                                <span class="change-positive" id="wealthChange">+$0 (0.00%)</span>
+                                <span>Today</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-view-details" id="connectWealthBtn">
+                                Connect Account
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Network Highlights -->
+                    <div class="card network-card">
+                        <div class="card-header">
+                            <h3>Network Highlights</h3>
+                            <div class="card-actions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="card-body" id="networkContacts">
+                            <div class="network-item">
+                                <div class="network-avatar">
+                                    <img src="assets/images/contact1.jpg" alt="Contact">
+                                </div>
+                                <div class="network-content">
+                                    <h4 contenteditable="true">Key Contact</h4>
+                                    <p contenteditable="true">Last contact: 1 week ago</p>
+                                </div>
+                                <div class="network-action">
+                                    <button class="btn-network btn-delete-contact">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-quick-add" id="addContactBtn">
+                                <i class="fas fa-plus"></i> Add Contact
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Wealth Connection Modal -->
+    <div class="modal" id="wealthConnectionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Connect Financial Account</h3>
+                <button class="modal-close" id="closeWealthModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="simulated-banks">
+                    <div class="bank-option" data-bank="chase">
+                        <img src="assets/images/banks/chase.png" alt="Chase">
+                        <span>Chase Bank</span>
+                    </div>
+                    <div class="bank-option" data-bank="fidelity">
+                        <img src="assets/images/banks/fidelity.png" alt="Fidelity">
+                        <span>Fidelity</span>
+                    </div>
+                </div>
+                <button id="simulateSuccessBtn" class="btn-simulate">
+                    <i class="fas fa-magic"></i> Simulate Successful Connection
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/planner.js"></script>
+</body>
+</html>

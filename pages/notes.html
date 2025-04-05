@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Suite | Premium Note-Taking</title>
+    <link rel="stylesheet" href="nav.css"> <!-- Navigation CSS -->
+    <link rel="stylesheet" href="../css/notes.css"> <!-- Your original notes CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Navigation Sidebar -->
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>FocusFlow</h1>
+            </div>
+            <a href="../pages/home.html"><button class="nav-button" data-page="home">
+                <i class="fas fa-home nav-icon"></i>
+                <span class="nav-label">Home</span>
+            </button></a>
+            
+            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
+                <i class="fas fa-lightbulb nav-icon"></i>
+                <span class="nav-label">Idea</span>
+            </button></a>
+            
+            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
+                <i class="fas fa-bullseye nav-icon"></i>
+                <span class="nav-label">Goal</span>
+            </button></a>
+            
+            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
+                <i class="fas fa-project-diagram nav-icon"></i>
+                <span class="nav-label">Planner</span>
+            </button></a>
+            
+            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
+                <i class="fas fa-calendar nav-icon"></i>
+                <span class="nav-label">Calendar</span>
+            </button></a>
+            
+            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
+                <i class="fas fa-clock nav-icon"></i>
+                <span class="nav-label">Pomodoro</span>
+            </button></a>
+            
+            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
+                <i class="fas fa-sticky-note nav-icon"></i>
+                <span class="nav-label">Notes</span>
+            </button></a>
+        </nav>
+
+        <!-- Notes App Container -->
+        <div class="app-container">
+            <!-- Premium Header -->
+            <header class="app-header">
+                <div class="logo-container">
+                    <i class="fas fa-crown premium-badge"></i>
+                    <h1>Nexus<span>Notes</span></h1>
+                </div>
+                <div class="user-controls">
+                    <button class="btn upgrade-btn pulse">UPGRADE</button>
+                    <div class="user-avatar">
+                        <img src="assets/images/default-avatar.jpg" alt="User">
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main App Area -->
+            <div class="app-main">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <button class="btn new-note-btn">
+                            <i class="fas fa-plus"></i> New Note
+                        </button>
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search notes...">
+                        </div>
+                    </div>
+                    
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li class="active"><i class="fas fa-inbox"></i> All Notes</li>
+                            <li><i class="fas fa-star"></i> Starred</li>
+                            <li><i class="fas fa-lock"></i> Private</li>
+                            <li><i class="fas fa-trash"></i> Trash</li>
+                        </ul>
+                        
+                        <div class="sidebar-divider"></div>
+                        
+                        <div class="tags-container">
+                            <h3>TAGS <i class="fas fa-plus"></i></h3>
+                            <ul>
+                                <li><span class="tag-color business"></span> Business</li>
+                                <li><span class="tag-color personal"></span> Personal</li>
+                                <li><span class="tag-color ideas"></span> Ideas</li>
+                            </ul>
+                        </div>
+                    </nav>
+                    
+                    <div class="sidebar-footer">
+                        <div class="storage-indicator">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 35%;"></div>
+                            </div>
+                            <span>3.2GB of 10GB used</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Notes List -->
+                <section class="notes-list">
+                    <div class="notes-list-header">
+                        <h2>All Notes</h2>
+                        <div class="view-controls">
+                            <button class="view-btn active"><i class="fas fa-th-large"></i></button>
+                            <button class="view-btn"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="notes-grid">
+                        <!-- Note cards will be added dynamically -->
+                    </div>
+                </section>
+
+                <!-- Note Editor -->
+                <section class="note-editor">
+                    <div class="editor-header">
+                        <input type="text" class="note-title" placeholder="Note Title">
+                        <div class="editor-toolbar">
+                            <button class="tool-btn"><i class="fas fa-star"></i></button>
+                            <button class="tool-btn"><i class="fas fa-lock"></i></button>
+                            <button class="tool-btn"><i class="fas fa-trash"></i></button>
+                            <button class="tool-btn"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-content">
+                        <div class="editor-toolbar-2">
+                            <button class="format-btn ai-btn"><i class="fas fa-robot"></i> AI Assist</button>
+                        </div>
+                        
+                        <div class="editor-area" contenteditable="true">
+                            <p>Start typing your note here...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-footer">
+                        <div class="editor-status">
+                            <span>Last saved: Just now</span>
+                        </div>
+                        <div class="editor-actions">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- AI Assistant Panel (Hidden by default) -->
+            <div class="ai-panel">
+                <div class="ai-panel-header">
+                    <h3>AI Assistant</h3>
+                    <button class="close-ai"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="ai-options">
+                    <button class="ai-option">
+                        <i class="fas fa-magic"></i>
+                        <span>Improve Writing</span>
+                    </button>
+                    <button class="ai-option">
+                        <i class="fas fa-language"></i>
+                        <span>Translate</span>
+                    </button>
+                    <button class="ai-option">
+                        <i class="fas fa-list"></i>
+                        <span>Summarize</span>
+                    </button>
+                    <button class="ai-option">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Generate Ideas</span>
+                    </button>
+                </div>
+                <div class="ai-output">
+                    <p>Select an AI action to get started...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti effect container -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="../js/notes.js"></script>
+    <script src="nav.js"></script>
+</body>
+</html>

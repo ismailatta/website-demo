@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaFlow - Thought Management Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/idea.css">
+    
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Navigation Sidebar -->
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>FocusFlow</h1>
+            </div>
+            <a href="../pages/home.html"><button class="nav-button" data-page="home">
+                <i class="fas fa-home nav-icon"></i>
+                <span class="nav-label">Home</span>
+            </button></a>
+            
+            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
+                <i class="fas fa-lightbulb nav-icon"></i>
+                <span class="nav-label">Idea</span>
+            </button></a>
+            
+            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
+                <i class="fas fa-bullseye nav-icon"></i>
+                <span class="nav-label">Goal</span>
+            </button></a>
+            
+            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
+                <i class="fas fa-project-diagram nav-icon"></i>
+                <span class="nav-label">Planner</span>
+            </button></a>
+            
+            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
+                <i class="fas fa-calendar nav-icon"></i>
+                <span class="nav-label">Calendar</span>
+            </button></a>
+            
+            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
+                <i class="fas fa-clock nav-icon"></i>
+                <span class="nav-label">Pomodoro</span>
+            </button></a>
+            
+            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
+                <i class="fas fa-sticky-note nav-icon"></i>
+                <span class="nav-label">Notes</span>
+            </button></a>
+        </nav>
+
+        <!-- Main App Content -->
+        <div class="app-container">
+            <header class="app-header">
+                <h1>IdeaFlow</h1>
+                <p class="subtitle">Organize, Analyze & Develop Your Thoughts</p>
+            </header>
+
+            <div class="main-content">
+                <div class="control-panel">
+                    <button id="add-idea-btn" class="primary-btn">
+                        <i class="fas fa-plus"></i> Add New Idea
+                    </button>
+                    <div class="filter-options">
+                        <span>Filter:</span>
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                        <button class="filter-btn" data-filter="important">Important</button>
+                    </div>
+                </div>
+
+                <div id="idea-container" class="idea-container">
+                    <!-- Ideas will be added here dynamically -->
+                </div>
+
+                <div class="analysis-panel">
+                    <h3>Idea Analysis</h3>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-ideas">0</div>
+                            <div class="stat-label">Total Ideas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="completed-ideas">0</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="progress-percent">0%</div>
+                            <div class="stat-label">Progress</div>
+                        </div>
+                    </div>
+                    <div class="tag-cloud" id="tag-cloud">
+                        <h4>Common Tags</h4>
+                        <!-- Tags will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/idea.js"></script>
+</body>
+</html>
