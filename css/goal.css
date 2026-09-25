@@ -42,14 +42,9 @@ body {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     padding: 20px 0;
-    transition: width 0.3s ease;
     position: fixed;
     height: 100vh;
     z-index: 100;
-}
-
-.main-nav:hover {
-    width: 220px;
 }
 
 .main-nav .logo {
@@ -64,7 +59,7 @@ body {
 
 .main-nav .logo i {
     font-size: 1.8rem;
-    color: #6c5ce7;
+    color: #4285F4;
     min-width: 24px;
 }
 
@@ -75,10 +70,6 @@ body {
     display: none;
 }
 
-.main-nav:hover .logo h1 {
-    display: block;
-}
-
 .nav-button {
     display: flex;
     align-items: center;
@@ -86,6 +77,9 @@ body {
     padding: 12px 24px;
     background: transparent;
     border: none;
+    border-left: 3px solid transparent;
+    box-sizing: border-box;
+    min-height: 48px;
     cursor: pointer;
     color: #5F6368;
     transition: all 0.2s ease;
@@ -94,10 +88,15 @@ body {
     overflow: hidden;
 }
 
+.main-nav > a {
+    display: block;
+    height: 48px;
+}
+
 .nav-button.active {
-    background-color: #f0f2ff;
-    color: #6c5ce7;
-    border-left: 3px solid #6c5ce7;
+    background-color: #E8F0FE;
+    color: #4285F4;
+    box-shadow: inset 3px 0 0 #4285F4;
 }
 
 .nav-button:hover:not(.active) {
@@ -118,10 +117,6 @@ body {
     display: none;
 }
 
-.main-nav:hover .nav-label {
-    display: inline;
-}
-
 /* Main app container */
 .app-container {
     margin-left: 80px;
@@ -129,11 +124,6 @@ body {
     display: flex;
     min-height: 100vh;
     transition: margin-left 0.3s ease;
-}
-
-.main-nav:hover ~ .app-container {
-    margin-left: 220px;
-    width: calc(100% - 220px);
 }
 
 /* Sidebar Styles */
@@ -934,10 +924,6 @@ header h2 {
         overflow-x: auto;
     }
     
-    .main-nav:hover {
-        width: 100%;
-    }
-    
     .nav-button {
         flex-direction: column;
         padding: 10px;
@@ -951,8 +937,7 @@ header h2 {
     }
     
     .nav-label {
-        display: block;
-        font-size: 12px;
+        display: none;
     }
     
     .app-container {
@@ -960,8 +945,4 @@ header h2 {
         width: 100%;
     }
     
-    .main-nav:hover ~ .app-container {
-        margin-left: 0;
-        width: 100%;
-    }
 }

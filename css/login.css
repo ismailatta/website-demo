@@ -350,6 +350,19 @@
   .form-group {
     margin-bottom: 1.5rem;
   }
+
+  .auth-message {
+    margin: 0 0 1rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .auth-message.error {
+    color: #b42318;
+    background-color: #fef3f2;
+  }
   
   .form-group label {
     display: block;

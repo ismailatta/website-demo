@@ -45,12 +45,7 @@ body {
     background-color: var(--surface-color);
     box-shadow: var(--shadow-sm);
     padding: 20px 0;
-    transition: width 0.3s ease;
     z-index: 10;
-}
-
-.sidebar:hover {
-    width: 200px;
 }
 
 
@@ -67,15 +62,10 @@ body {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     padding: 20px 0;
-    transition: width 0.3s ease;
     position: fixed;
     height: 100vh;
     z-index: 100;
     overflow-y: auto; /* Add scroll if needed */
-}
-
-.main-nav:hover {
-    width: 220px;
 }
 
 .main-nav .logo {
@@ -90,7 +80,7 @@ body {
 
 .main-nav .logo i {
     font-size: 1.8rem;
-    color: #6c5ce7;
+    color: #4285F4;
     min-width: 24px;
 }
 
@@ -101,10 +91,6 @@ body {
     display: none;
 }
 
-.main-nav:hover .logo h1 {
-    display: block;
-}
-
 .nav-button {
     display: flex;
     align-items: center;
@@ -112,6 +98,9 @@ body {
     padding: 12px 24px;
     background: transparent;
     border: none;
+    border-left: 3px solid transparent;
+    box-sizing: border-box;
+    min-height: 48px;
     cursor: pointer;
     color: #5F6368;
     transition: all 0.2s ease;
@@ -120,10 +109,15 @@ body {
     overflow: hidden;
 }
 
+.main-nav > a {
+    display: block;
+    height: 48px;
+}
+
 .nav-button.active {
-    background-color: #f0f2ff;
-    color: #6c5ce7;
-    border-left: 3px solid #6c5ce7;
+    background-color: #E8F0FE;
+    color: #4285F4;
+    box-shadow: inset 3px 0 0 #4285F4;
 }
 
 .nav-button:hover:not(.active) {
@@ -142,10 +136,6 @@ body {
 
 .nav-label {
     display: none;
-}
-
-.main-nav:hover .nav-label {
-    display: inline;
 }
 
 /* Logo Styles */
@@ -169,23 +159,13 @@ body {
     display: none;
 }
 
-.sidebar:hover .logo h1 {
-    display: block;
-}
-
 /* Main content area */
 .main-content {
     flex: 1;
     padding: 2rem;
     background-color: var(--surface-color);
     margin-left: 80px; /* Match the nav width */
-    transition: margin-left 0.3s ease;
     min-height: 100vh;
-}
-
-/* When nav expands */
-.main-nav:hover + .main-content {
-    margin-left: 220px;
 }
 
 /* Hero Section */
@@ -580,12 +560,6 @@ body {
     .main-content {
         margin-left: 70px;
     }
-    .main-nav:hover {
-        width: 200px;
-    }
-    .main-nav:hover + .main-content {
-        margin-left: 200px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -603,10 +577,6 @@ body {
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     
-    .main-nav:hover {
-        width: 100%;
-    }
-    
     .nav-button {
         flex-direction: column;
         padding: 10px 15px;
@@ -620,19 +590,13 @@ body {
     }
     
     .nav-label {
-        display: block;
-        font-size: 12px;
+        display: none;
     }
     
     .main-content {
         margin-left: 0;
         padding: 1.5rem;
         margin-top: 0;
-    }
-    
-    /* Remove hover effects on mobile */
-    .main-nav:hover + .main-content {
-        margin-left: 0;
     }
     
     .hero {

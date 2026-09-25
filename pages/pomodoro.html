@@ -6,50 +6,12 @@
     <title>FocusFlow - Pomodoro Timer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/pomodoro.css">
+    <link rel="stylesheet" href="../css/navigation.css">
 </head>
 <body>
     <div class="app-wrapper">
         <!-- Navigation Sidebar -->
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fas fa-rocket"></i>
-                <h1>FocusFlow</h1>
-            </div>
-            <a href="../pages/home.html"><button class="nav-button" data-page="home">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-label">Home</span>
-            </button></a>
-            
-            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
-                <i class="fas fa-lightbulb nav-icon"></i>
-                <span class="nav-label">Idea</span>
-            </button></a>
-            
-            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
-                <i class="fas fa-bullseye nav-icon"></i>
-                <span class="nav-label">Goal</span>
-            </button></a>
-            
-            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
-                <i class="fas fa-project-diagram nav-icon"></i>
-                <span class="nav-label">Planner</span>
-            </button></a>
-            
-            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
-                <i class="fas fa-calendar nav-icon"></i>
-                <span class="nav-label">Calendar</span>
-            </button></a>
-            
-            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
-                <i class="fas fa-clock nav-icon"></i>
-                <span class="nav-label">Pomodoro</span>
-            </button></a>
-            
-            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
-                <i class="fas fa-sticky-note nav-icon"></i>
-                <span class="nav-label">Notes</span>
-            </button></a>
-        </nav>
+        <div id="app-navigation" class="main-nav"></div>
 
         <div class="app-container">
             <header class="header">
@@ -114,6 +76,7 @@
         </div>
     </div>
 
+    <script src="../js/navigation.js"></script>
     <script src="../js/pomodoro.js"></script>
 </body>
 </html>

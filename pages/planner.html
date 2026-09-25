@@ -5,52 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visionary Planner | Ultimate Productivity System</title>
     <link rel="stylesheet" href="../css/planner.css">
+    <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-wrapper">
         <!-- Navigation Sidebar -->
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fas fa-rocket"></i>
-                <h1>FocusFlow</h1>
-            </div>
-            <a href="../pages/home.html"><button class="nav-button" data-page="home">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-label">Home</span>
-            </button></a>
-            
-            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
-                <i class="fas fa-lightbulb nav-icon"></i>
-                <span class="nav-label">Idea</span>
-            </button></a>
-            
-            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
-                <i class="fas fa-bullseye nav-icon"></i>
-                <span class="nav-label">Goal</span>
-            </button></a>
-            
-            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
-                <i class="fas fa-project-diagram nav-icon"></i>
-                <span class="nav-label">Planner</span>
-            </button></a>
-            
-            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
-                <i class="fas fa-calendar nav-icon"></i>
-                <span class="nav-label">Calendar</span>
-            </button></a>
-            
-            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
-                <i class="fas fa-clock nav-icon"></i>
-                <span class="nav-label">Pomodoro</span>
-            </button></a>
-            
-            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
-                <i class="fas fa-sticky-note nav-icon"></i>
-                <span class="nav-label">Notes</span>
-            </button></a>
-        </nav>
+        <div id="app-navigation" class="main-nav"></div>
 
         <!-- Main Content -->
         <main class="app-container">
@@ -92,34 +54,7 @@
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
-                        <div class="card-body" id="focusItemsContainer">
-                            <div class="focus-item">
-                                <div class="focus-checkbox">
-                                    <input type="checkbox" id="focus1">
-                                    <label for="focus1"></label>
-                                </div>
-                                <div class="focus-content">
-                                    <h4 contenteditable="true">Plan your day</h4>
-                                    <p contenteditable="true">High Priority | Morning</p>
-                                </div>
-                                <button class="btn-delete-focus">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                            <div class="focus-item">
-                                <div class="focus-checkbox">
-                                    <input type="checkbox" id="focus2">
-                                    <label for="focus2"></label>
-                                </div>
-                                <div class="focus-content">
-                                    <h4 contenteditable="true">Review investments</h4>
-                                    <p contenteditable="true">Medium Priority | Afternoon</p>
-                                </div>
-                                <button class="btn-delete-focus">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
+                        <div class="card-body" id="focusItemsContainer"></div>
                         <div class="card-footer">
                             <button class="btn-quick-add" id="addFocusItem">
                                 <i class="fas fa-plus"></i> Add Focus Item
@@ -177,22 +112,7 @@
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
-                        <div class="card-body" id="networkContacts">
-                            <div class="network-item">
-                                <div class="network-avatar">
-                                    <img src="assets/images/contact1.jpg" alt="Contact">
-                                </div>
-                                <div class="network-content">
-                                    <h4 contenteditable="true">Key Contact</h4>
-                                    <p contenteditable="true">Last contact: 1 week ago</p>
-                                </div>
-                                <div class="network-action">
-                                    <button class="btn-network btn-delete-contact">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="card-body" id="networkContacts"></div>
                         <div class="card-footer">
                             <button class="btn-quick-add" id="addContactBtn">
                                 <i class="fas fa-plus"></i> Add Contact
@@ -230,6 +150,7 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/navigation.js"></script>
     <script src="../js/planner.js"></script>
 </body>
 </html>

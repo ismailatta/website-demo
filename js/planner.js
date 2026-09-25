@@ -195,14 +195,7 @@ function setupNetworkContacts() {
     const addContactBtn = document.getElementById('addContactBtn'); // Using same button as focus items
     
     // Load saved contacts
-    let contacts = JSON.parse(localStorage.getItem('networkContacts')) || [
-        {
-            id: 'contact-1',
-            name: 'Key Contact',
-            lastContact: '1 week ago',
-            image: 'assets/images/contact1.jpg'
-        }
-    ];
+    let contacts = JSON.parse(localStorage.getItem('networkContacts')) || [];
     
     // Render existing contacts
     contacts.forEach(contact => {

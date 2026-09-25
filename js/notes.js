@@ -36,26 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Make sure Notes button is active by default
-  document.querySelector('.nav-button[data-page="notes"]').classList.add('active');
+    document.querySelector('.nav-button[data-page="notes"]')?.classList.add('active');
   
   
-    // Sample notes data
-    let notes = [
-        
-        {
-            id: 2,
-            title: 'Business Strategy Q3',
-            content: 'Key objectives:\n- Increase market share by 15%\n- Launch new product line',
-            date: '2023-05-10',
-            tag: 'business',
-            starred: true,
-            locked: false,
-            trashed: false
-        },
-        
-        
-        
-    ];
+    let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+
+    function saveNotes() {
+        localStorage.setItem('notes', JSON.stringify(notes));
+    }
     
     let currentNoteId = null;
     let isEditorOpen = false;
@@ -142,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 </div>
-                <div class="note-card-content">${note.content}</div>
+                <div class="note-card-content">${note.content || 'No content yet'}</div>
                 <div class="note-card-footer">
                     <div class="note-card-tag ${note.tag}">${note.tag}</div>
                     <div>${formattedDate}</div>
@@ -235,8 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function createNewNote() {
         const newNote = {
             id: notes.length > 0 ? Math.max(...notes.map(n => n.id)) + 1 : 1,
-            title: 'Untitled Note',
-            content: 'Start typing your note here...',
+            title: '',
+            content: '',
             date: new Date().toISOString().split('T')[0],
             tag: currentTagFilter || 'personal',
             starred: false,
@@ -245,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         notes.unshift(newNote);
+        saveNotes();
         currentFilter = 'all';
         updateActiveFilters();
         renderNotes();
@@ -261,6 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
         notes[noteIndex].title = noteTitle.value;
         notes[noteIndex].content = editorArea.innerText;
         notes[noteIndex].date = new Date().toISOString().split('T')[0];
+        saveNotes();
         
         renderNotes();
         showToast('Note saved successfully');
@@ -274,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (noteIndex === -1) return;
         
         notes[noteIndex].starred = !notes[noteIndex].starred;
+        saveNotes();
         
         // Update UI
         const starIcon = starBtn.querySelector('i');
@@ -298,6 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (noteIndex === -1) return;
         
         notes[noteIndex].locked = !notes[noteIndex].locked;
+        saveNotes();
         
         // Update UI
         const lockIcon = lockBtn.querySelector('i');
@@ -328,6 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         notes[noteIndex].trashed = !isCurrentlyTrashed;
+        saveNotes();
         
         // Update UI
         const deleteIcon = deleteBtn.querySelector('i');
@@ -345,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (notes[noteIndex].trashed) {
             currentNoteId = null;
             noteTitle.value = '';
-            editorArea.innerHTML = '<p>Start typing your note here...</p>';
+            editorArea.innerHTML = '';
             
             // Hide editor on mobile
             if (window.innerWidth < 992) {
@@ -362,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (noteIndex === -1) return;
         
         notes[noteIndex].tag = tag;
+        saveNotes();
         
         // Update in notes grid
         const noteCard = document.querySelector(`.note-card[data-id="${currentNoteId}"]`);
@@ -433,6 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const noteIndex = notes.findIndex(n => n.id === noteId);
                 if (noteIndex !== -1) {
                     notes[noteIndex].starred = !notes[noteIndex].starred;
+                    saveNotes();
                     renderNotes();
                     showToast(notes[noteIndex].starred ? 'Note starred' : 'Note unstarred');
                     
@@ -453,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const noteIndex = notes.findIndex(n => n.id === noteId);
                 if (noteIndex !== -1) {
                     notes[noteIndex].locked = !notes[noteIndex].locked;
+                    saveNotes();
                     renderNotes();
                     showToast(notes[noteIndex].locked ? 'Note locked (private)' : 'Note unlocked');
                     
@@ -542,6 +538,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Auto-save when leaving editor
+        editorArea.addEventListener('input', () => {
+            if (editorArea.innerText.trim() === '') {
+                editorArea.innerHTML = '';
+            }
+        });
         editorArea.addEventListener('blur', saveNote);
         noteTitle.addEventListener('blur', saveNote);
         

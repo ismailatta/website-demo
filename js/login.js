@@ -120,27 +120,12 @@ function initLoginPage() {
     forms.forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Add loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            if (!submitBtn) return;
-            
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Store authentication status in localStorage
-                localStorage.setItem('isAuthenticated', 'true');
-                
-                // Redirect to home page
-                window.location.href = 'pages/home.html';
-            }, 1500);
+
+            if (this.id === 'signup-form') {
+                createAccount(this);
+            } else {
+                loginAccount(this);
+            }
         });
     });
     
@@ -205,32 +190,91 @@ function checkPasswordStrength(password) {
 }
 
 function handleSocialLogin(provider) {
-    // Show loading state
     const btn = provider === 'google' ? document.querySelector('.btn-google') : document.querySelector('.btn-apple');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
-    btn.disabled = true;
-    
-    // Simulate social login
-    setTimeout(() => {
-        // Reset button
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        
-        // Store authentication status in localStorage
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('authProvider', provider);
-        
-        // Redirect to home page
-        window.location.href = 'pages/home.html';
-    }, 2000);
+    showAuthMessage(btn.closest('.auth-form'), `${provider} login is not configured yet. Create an account with your email instead.`, 'error');
+}
+
+async function createAccount(form) {
+    const name = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim().toLowerCase();
+    const password = document.getElementById('signup-password').value;
+    const users = getStoredUsers();
+
+    if (password.length < 8) {
+        showAuthMessage(form, 'Password must be at least 8 characters long.', 'error');
+        return;
+    }
+
+    if (users[email]) {
+        showAuthMessage(form, 'An account with this email already exists. Please log in.', 'error');
+        return;
+    }
+
+    users[email] = { name, password: await hashPassword(password) };
+    localStorage.setItem('focusFlowUsers', JSON.stringify(users));
+    startSession(email, name);
+}
+
+async function loginAccount(form) {
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
+    const user = getStoredUsers()[email];
+
+    if (!user) {
+        showAuthMessage(form, 'No account was found for this email. Please use Sign Up first.', 'error');
+        return;
+    }
+
+    if (user.password !== await hashPassword(password)) {
+        showAuthMessage(form, 'Incorrect email or password.', 'error');
+        return;
+    }
+
+    startSession(email, user.name);
+}
+
+function getStoredUsers() {
+    try {
+        return JSON.parse(localStorage.getItem('focusFlowUsers') || '{}');
+    } catch (error) {
+        return {};
+    }
+}
+
+async function hashPassword(password) {
+    if (window.crypto?.subtle) {
+        const data = new TextEncoder().encode(password);
+        const hash = await window.crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(hash)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    return btoa(unescape(encodeURIComponent(password)));
+}
+
+function startSession(email, name) {
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('currentUser', JSON.stringify({ email, name }));
+    window.location.href = 'pages/home.html';
+}
+
+function showAuthMessage(form, message, type) {
+    let messageElement = form.querySelector('.auth-message');
+    if (!messageElement) {
+        messageElement = document.createElement('p');
+        messageElement.className = 'auth-message';
+        form.prepend(messageElement);
+    }
+
+    messageElement.textContent = message;
+    messageElement.className = `auth-message ${type}`;
 }
 
 // Check authentication on home page load
 function checkAuthentication() {
     if (window.location.pathname.includes('pages/home.html')) {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-        if (!isAuthenticated) {
+        const currentUser = localStorage.getItem('currentUser');
+        if (!isAuthenticated || !currentUser) {
             window.location.href = 'index.html';
         }
     }

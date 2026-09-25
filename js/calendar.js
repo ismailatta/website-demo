@@ -14,6 +14,7 @@ class EnhancedCalendar {
     this.editingEventId = null;
     this.editingCalendarId = null;
     this.selectedDays = new Set();
+    this.reminderContext = 'event';
     this.loadData(); 
     this.selectedFrequency = 'none';
     this.userProductivityHours = { start: 9, end: 17 };
@@ -705,6 +706,7 @@ showCountryResults(searchTerm) {
     
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
+    endOfWeek.setHours(23, 59, 59, 999);
     
     const eventsForWeek = this.events.filter(event => {
       const eventDate = new Date(event.date);
@@ -1047,7 +1049,7 @@ showCountryResults(searchTerm) {
       }
       
       const startTime = `${hour.toString().padStart(2, '0')}:00`;
-      const endTime = `${(hour + 1).toString().padStart(2, '0')}:00`;
+      const endTime = hour === 23 ? '23:59' : `${(hour + 1).toString().padStart(2, '0')}:00`;
       this.dom.eventStartTime.value = startTime;
       this.dom.eventEndTime.value = endTime;
     }
@@ -1085,7 +1087,8 @@ showCountryResults(searchTerm) {
     this.dom.eventCalendarSelect.value = event.calendarId || (this.calendars[0]?.id || '');
     
     const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    const dayName = dayNames[event.date.getDay()];
+    const eventDate = new Date(event.date);
+    const dayName = dayNames[eventDate.getDay()];
     document.querySelectorAll('.day-option').forEach(opt => {
       opt.classList.remove('selected');
       if (opt.dataset.day === dayName) {
@@ -1501,6 +1504,8 @@ showCountryResults(searchTerm) {
         return;
     }
 
+    this.reminderContext = context;
+
     let eventTitle, eventStartTime;
     
     if (context === 'task') {
@@ -1635,10 +1640,8 @@ showCountryResults(searchTerm) {
       // You should also remove the reminder from the reminderSystem
     });
     
-    // Add to the appropriate list
-    const currentPopup = document.querySelector('.popup-content:not([style*="display: none"])').id;
-    
-    if (currentPopup.includes('task')) {
+    // Add to the list belonging to the form that opened the reminder popup.
+    if (this.reminderContext === 'task') {
       this.dom.taskRemindersList.appendChild(reminderItem);
     } else {
       this.dom.remindersList.appendChild(reminderItem);
@@ -1793,51 +1796,7 @@ showCountryResults(searchTerm) {
       this.selectedCalendarIds.add(calendar.id);
     });
     
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const deadline = new Date(today);
-    deadline.setDate(today.getDate() + 2);
-    deadline.setHours(17, 0, 0, 0);
-    
-    this.events = [
-      {
-        id: 1,
-        title: 'Team Meeting',
-        description: 'Weekly team sync',
-        startTime: '10:00',
-        endTime: '11:00',
-        date: today,
-        frequency: 'weekly',
-        completed: false,
-        calendarId: 2
-      },
-      {
-        id: 2,
-        title: 'Dentist Appointment',
-        description: 'Regular checkup',
-        startTime: '14:00',
-        endTime: '15:00',
-        date: tomorrow,
-        frequency: 'none',
-        completed: false,
-        calendarId: 1
-      },
-      {
-        id: 3,
-        title: 'Finish Project Report',
-        description: 'Complete the quarterly report',
-        startTime: '14:00',
-        endTime: '15:30',
-        date: today,
-        duration: 90,
-        priority: 'high',
-        deadline: deadline,
-        completed: false,
-        calendarId: 2,
-        isTask: true
-      }
-    ];
+    this.events = [];
   }
 
   saveToLocalStorage() {

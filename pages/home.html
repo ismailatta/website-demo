@@ -5,52 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FocusFlow - Boost Your Productivity</title>
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-wrapper">
         <!-- Sidebar Navigation -->
-        <div class="main-nav">
-            <div class="logo">
-                <i class="fas fa-rocket"></i>
-                <h1>FocusFlow</h1>
-            </div>
-            <a href="../pages/home.html"><button class="nav-button active" data-page="home">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-label">Home</span>
-            </button></a>
-            
-            <a href="../pages/idea.html"><button class="nav-button" data-page="idea">
-                <i class="fas fa-lightbulb nav-icon"></i>
-                <span class="nav-label">Idea</span>
-            </button></a>
-            
-            <a href="../pages/goal.html"><button class="nav-button" data-page="goal">
-                <i class="fas fa-bullseye nav-icon"></i>
-                <span class="nav-label">Goal</span>
-            </button></a>
-            
-            <a href="../pages/planner.html"><button class="nav-button" data-page="planner">
-                <i class="fas fa-project-diagram nav-icon"></i>
-                <span class="nav-label">Planner</span>
-            </button></a>
-            
-            <a href="../pages/calendar.html"><button class="nav-button" data-page="calendar">
-                <i class="fas fa-calendar nav-icon"></i>
-                <span class="nav-label">Calendar</span>
-            </button></a>
-            
-            <a href="../pages/pomodoro.html"><button class="nav-button" data-page="pomodoro">
-                <i class="fas fa-clock nav-icon"></i>
-                <span class="nav-label">Pomodoro</span>
-            </button></a>
-            
-            <a href="../pages/notes.html"><button class="nav-button" data-page="notes">
-                <i class="fas fa-sticky-note nav-icon"></i>
-                <span class="nav-label">Notes</span>
-            </button></a>
-        </div>
+        <div id="app-navigation" class="main-nav"></div>
 
         <!-- Main Content -->
         <main class="main-content">
@@ -194,6 +156,7 @@
         </div>
     </div>
 
+    <script src="../js/navigation.js"></script>
     <script src="../js/home.js"></script>
 </body>
 </html>
